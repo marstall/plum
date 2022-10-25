@@ -1,0 +1,7 @@
+<div class="my-4">
+  <div class="font-sans font-medium uppercase text-base">
+    {{@track.title}}</div>
+  <div>{{#each @track.recording.relations as |relation index|}}
+      <Relation @relation={{relation}}/>
+  {{/each}}</div>
+</div>

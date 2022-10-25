@@ -1,0 +1,14 @@
+<Input @value={{this.query}}/>
+<div>
+  <button {{action "serch"}}>serch</button>
+
+  {{#each this.results as |result|}}
+    <div>
+      {{result.title}} by
+    {{#each result.artists as |artist|}}
+      {{artist.name}}
+    {{/each}}
+
+    </div>
+  {{/each}}
+</div>

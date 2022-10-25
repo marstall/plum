@@ -1,0 +1,125 @@
+<div class="grid grid-cols-2 font-sans font-normal text-base">
+  <!--  <div style="font-size:smaller"> {{@relation.type}}->{{@relation.target-type}}</div>-->
+
+  {{#if (eq @relation.target-type "recording")}}
+    <div >
+        {{#each @relation.recording.artist-credit as |artist-credit|}}
+          <LinkTo @route="artist" @model={{artist-credit.artist.id}}>
+            {{artist-credit.name}}
+          </LinkTo>
+          {{artist-credit.joinphrase}}
+        {{/each}}
+      </div>
+      <div>
+        <LinkTo @route="recording" @model={{@relation.recording.id}}>
+          {{@relation.recording.title}}
+        </LinkTo>
+      </div>
+
+      <div>
+        {{@relation.begin}}
+      </div>
+    {{#if (eq @relation.type "instrument")}}
+
+    <div>
+    {{#each @relation.attributes as |attribute|}}
+      {{attribute}}
+    {{/each}}
+    </div>
+
+    {{else  }}
+      <div>
+        {{@relation.type}}
+      </div>
+  {{/if}}
+  {{/if}}
+
+{{#if (eq @relation.target-type "artist")}}
+  <div>
+    <LinkTo @route="artist" @model={{@relation.artist.id}}>
+      {{@relation.artist.name}}
+    </LinkTo>
+  </div>
+  {{#if (eq @relation.type "instrument")}}
+    <div>
+      {{#each @relation.attributes as |attribute|}}
+        {{attribute}}
+      {{/each}}
+    </div>
+  {{else}}
+    <div>
+      {{@relation.type}}
+    </div>
+  {{/if}}
+  {{/if}}
+{{#if (eq @relation.target-type "work")}}
+  {{#if (eq @relation.type "performance")}}
+    <div>
+      {{#each @relation.attributes as |attribute|}}
+        {{#if (eq attribute "cover")}}
+          cover of {{@relation.end}} {{@relation.work.type}}
+        {{/if}}
+      {{/each}}
+          {{#each @relation.work.relations as |relation index|}}
+           {{#if (eq relation.type "writer")}}
+           {{unless index "by"}}
+           <LinkTo @route="artist" @model={{relation.artist.id}}>
+
+             {{relation.artist.name}}
+           </LinkTo>&nbsp;
+           {{/if}}
+          {{/each}}
+    </div>
+
+  {{/if}}
+
+{{/if}}
+  </div>
+
+
+
+{{#if @debug}}
+
+  <div style="background-color: lightblue;margin: 4px;padding: 4px;">
+
+    {{@relation.type}}->{{@relation.target-type}}
+{{#if @relation.recording}}
+    <div>
+  {{@relation.recording.name}}
+</div>
+{{/if}}
+{{#if @relation.attributes}}
+
+    <div>
+  {{#each @relation.attributes as |attribute|}}
+  {{attribute}}
+{{/each}}
+</div>
+{{/if}}
+
+  {{#if @relation.recording}}
+  <div>
+    on
+    <LinkTo @route="recording" @model={{@relation.recording.id}}>
+    {{@relation.recording.title}}</LinkTo>
+    {{#each @relation.recording.attributes}}
+      {{attribute}}
+    {{/each}}
+  {{#if @relation.begin}}
+    ({{@relation.begin}})
+  {{/if}}
+
+  </div>
+  {{/if}}
+  <div>
+    {{#if @relation.artist}}
+
+  <LinkTo @route="artist" @model={{@relation.artist.id}}>
+
+    {{@relation.artist.name}}
+  </LinkTo>
+
+    {{/if}}
+  </div>
+</div>
+{{/if}}

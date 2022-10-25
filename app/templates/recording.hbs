@@ -1,0 +1,21 @@
+<h2>{{@model.recording.title}} </h2>
+{{@model.work.type}} by
+{{#each @model.work.relations as |relation|}}
+  <LinkTo @route={{"artist"}} @model={{relation.artist.id}}>
+  {{relation.artist.name}}</LinkTo>&nbsp;
+{{/each}}
+
+<div>
+From
+  <LinkTo @route={{"release"}} @model={{@model.recording.releases.[0].id}}>
+
+  {{@model.recording.releases.[0].title}}
+  </LinkTo>
+  ({{@model.recording.releases.[0].date}})
+</div>
+  <h3>credits</h3>
+  <div>{{#each @model.recording.relations as |relation index|}}
+    <Relation @debug={{false}} @relation={{relation}}/>
+    <hr/>
+  {{/each}}</div>
+

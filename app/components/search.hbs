@@ -1,0 +1,10 @@
+<div class="flex justify-center items-center " >
+  <Input placeholder="album" style="background-color: white;padding:6px;border:1px;border-radius:10px;solid lightgrey" @value={{this.textInput}}/>
+  <button class="mx-4 p-1 px-2 text-white bg-yellow-500 rounded-xl " {{action "serch"}}>Search Musicbrainz</button>
+
+</div>
+<div class="m-8 grid justify-center items-start grid-cols-3">
+  {{#each @releases as |release|}}
+    <Release @release={{release}} @thumbnailUrl = {{get @thumbnailMap release.id}}/>
+  {{/each}}
+</div>

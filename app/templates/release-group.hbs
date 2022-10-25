@@ -1,0 +1,13 @@
+RELEASE GROUP
+<div>
+  <h2>{{@model.title}}</h2>
+  <div>
+    <ArtistCredit @artistCredit={{@model.artistCredits}}/>
+  </div>
+  <h3>Releases</h3>
+    {{#each @model.releases as |release|}}
+      <Release @release={{release}} @artistCredit={{@model.artistCredit}}/>
+    {{/each}}
+
+
+</div>

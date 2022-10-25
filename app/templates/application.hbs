@@ -1,7 +1,17 @@
-{{page-title "Plum"}}
+{{page-title "albumcredits.fm"}}
 
 {{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
 
-{{outlet}}
+<div class="flex justify-items-center items-center v-screen m-8 p-2 bg-yellow-100 border-dashed ring-4 ring-yellow-300 rounded-xl" >
+<div class="m-auto">
+<div class="text-center font-mono text-6xl text-gray-700 bg-yellow-100 p-8 rounded-xl">
+  <LinkTo @route={{"home"}}>
+  the missing credits
+  </LinkTo>
+</div>
+  <div class="my-6  ">
+    {{outlet}}
+
+  </div>
+</div>
+</div>

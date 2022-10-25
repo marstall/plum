@@ -1,0 +1,44 @@
+<div>
+    <div class="flex">
+      <div >
+        <LinkTo @route="release" @model={{@model.release.id}}>
+          <div style="width:250px;height:250px;background-color: black;display: flex;justify-content: center;align-items: center">
+            <img width=240 height=240 src={{@model.thumbnailUrl}}/>
+          </div>
+        </LinkTo>
+      </div>
+      <div>
+      <div class="mx-6 font-sans font-medium text-lg">
+        <div class="font-bold">
+          <LinkTo @route="release" @model={{@model.release.id}}>
+            {{@model.release.title}}
+          </LinkTo>
+        </div>
+        <div class=" text-base">
+          {{#each @model.release.artistCredits as |artistCredit|}}
+            <LinkTo @route="artist" @model={{artistCredit.artist.id}}>
+              {{artistCredit.name}}
+            </LinkTo>
+          {{/each}}
+        </div>
+        <!--    <div>-->
+        <!--      {{@model.release.country}}-->
+        <!--    </div>-->
+        <div class="text-base ">
+          {{#each @model.release.labelInfo as |labelInfo|}}
+            <LinkTo @route="label" @model={{labelInfo.label.id}}>
+              {{labelInfo.label.name}}
+            </LinkTo>
+          {{/each}}      ({{@model.release.date}}, {{@model.release.format}})
+        </div>
+      </div>
+      </div>
+    </div>
+  <div class="my-2  font-sans font-normal text-base">
+    {{#each @model.tracks as |track|}}
+  <Track @track={{track}}/>
+  {{/each}}
+  </div>
+
+
+  </div>

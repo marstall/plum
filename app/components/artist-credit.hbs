@@ -1,0 +1,5 @@
+{{#each @artistCredit as |artist-credit|}}
+  <LinkTo @route="artist" @model={{artist-credit.artist.id}}>
+    {{artist-credit.name}}
+  </LinkTo>{{artist-credit.joinphrase}}
+{{/each}}

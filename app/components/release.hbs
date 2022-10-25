@@ -1,0 +1,38 @@
+  <div>
+  {{#if @thumbnailUrl }}
+  <div>
+    <div>
+    <LinkTo @route="release" @model={{@release.id}}>
+<div style="width:250px;height:250px;background-color: black;display: flex;justify-content: center;align-items: center">
+      <img width=240 height=240 src={{@thumbnailUrl}}/>
+</div>
+    </LinkTo>
+    </div>
+    <div class="m-1 font-sans font-medium text-sm">
+    <div class="font-bold">
+      <LinkTo @route="release" @model={{@release.id}}>
+        {{@release.title}}
+      </LinkTo>
+    </div>
+    <div>
+      {{#each @release.artistCredits as |artistCredit|}}
+        <LinkTo @route="artist" @model={{artistCredit.artist.id}}>
+          {{artistCredit.name}}
+        </LinkTo>
+      {{/each}}
+    </div>
+<!--    <div>-->
+<!--      {{@release.country}}-->
+<!--    </div>-->
+    <div>
+      {{#each @release.labelInfo as |labelInfo|}}
+        <LinkTo @route="label" @model={{labelInfo.label.id}}>
+          {{labelInfo.label.name}}
+        </LinkTo>
+      {{/each}}      ({{@release.date}}, {{@release.format}})
+    </div>
+  </div>
+  </div>
+  {{/if}}
+
+  </div>

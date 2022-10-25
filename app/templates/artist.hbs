@@ -1,0 +1,13 @@
+<h2>{{@model.name}}</h2>
+<div>
+  <h3>releases</h3>
+  <div>{{#each @model.releases as |release|}}
+    <Release @release={{release}}/>
+    <hr/>
+  {{/each}}</div>
+  <h3>credits</h3>
+  <div>{{#each @model.relations as |relation|}}
+    <Relation @debug={{false}} @relation={{relation}}/>
+    <hr/>
+  {{/each}}</div>
+</div>
